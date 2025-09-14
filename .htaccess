@@ -1,0 +1,12 @@
+# ==========================
+# Archivo .htaccess básico para XAMPP
+# ==========================
+
+# Habilitar URLs amigables
+RewriteEngine On
+
+# Página de error 404
+ErrorDocument 404 /Curso_PHP/login/404.php
+
+# Evitar listado de directorios
+Options -Indexes

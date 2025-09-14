@@ -120,6 +120,7 @@ a:hover {
 
 
 
+
 .formulario .submit-btn {
 	padding: 15px;
 	text-align: center;
@@ -157,4 +158,10 @@ a:hover {
 .contenido article p{
 	margin-bottom: 10px;
 	color:#000;
+}
+.error4{
+
+	 font-size: 200px;   /* mucho más grande */
+  font-weight: bold;  /* negrita */
+  text-align: center; /* centrado */
 }

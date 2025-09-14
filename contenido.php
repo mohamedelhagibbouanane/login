@@ -1,15 +1,31 @@
 <?php
-session_start();
-//chaleco antibalas de contenido para no poder darle boton atras
-// Evita que la página se muestre desde la caché del navegador
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
+// -------------------------------------------------------
+// PROTECCIÓN DE PÁGINA: CONTENIDO PARA USUARIOS LOGUEADOS
+// -------------------------------------------------------
 
-// Si no hay sesión activa, redirige al login
+// Iniciamos la sesión en PHP
+// Esto es obligatorio si queremos usar $_SESSION para verificar si el usuario está logueado
+session_start();
+require("../library/reusedFunctions.php");
+// -------------------------------------------------------
+// 🔹 Evitar que el usuario vea la página usando el botón "Atrás"
+// -------------------------------------------------------
+// Esto fuerza al navegador a no cachear esta página
+// Así, aunque pulse "Atrás", el contenido no se mostrará desde la caché
+noBackProtection();
+
+// -------------------------------------------------------
+// 🔹 Verificar si hay sesión activa
+// -------------------------------------------------------
+// Si no existe la variable de sesión "usuario", significa que
+// el usuario no ha iniciado sesión, entonces lo redirigimos al login
 if (!isset($_SESSION['usuario'])) {
     header("Location: index.php");
-    exit;
-}
+} // Siempre salir después de header() para evitar que se siga ejecutando código
+
+
+// -------------------------------------------------------
+// Cargar la vista del contenido protegido
+// -------------------------------------------------------
+// Solo llegará aquí si el usuario está logueado
 require("views/contenido.view.php");
-?>
